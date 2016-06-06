@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Example Web Interface for api.planning.domains</title>
+
+    <!-- Load up jquery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!-- Finally, load our api library -->
+    <script type="text/javascript" src="planning-domains.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+    <br /><br />
+
+    <h1>Collections:</h1>
+    <div id="collections">Loading...</div>
+
+    <h1>Showing IPC-2008 Domains:</h1>
+    <div id="domains">Loading...</div>
+
+    <h1>Showing Sokoban Problems:</h1>
+    <div id="problems" style="width:400px">Loading...</div>
+
+    <h1>Problem Navigator</h1>
+    <div style="min-height:600px" id="problem-navigator">Loading...</div>
+
+    <script type="text/javascript">
+
+        function select_domain(did) {
+            $('#problems').html('Loading...');
+            fetch_problems('/problems/'+did, '#problems')
+        }
+
+        fetch_problems('/problems/8', '#problems');
+        fetch_domains('/domains/6', '#domains', 'select_domain');
+        fetch_collections('/collections', '#collections');
+
+        insert_navigator('#problem-navigator', 'alert');
+
+    </script>
+</div>
+</body>
+</html>
